@@ -5,7 +5,7 @@ set -x
 
 LINUX_HEADERS="linux-headers-$(uname -r)"
 LINUX_IMAGE="linux-image-$(uname -r)"
-sed -e "s@linux-image-$(uname -r)@${LINUX_IMAGE}@g" -e "s@###LINUX_HEADERS###@${LINUX_HEADERS}@g" Dockerfile.in > Dockerfile
+sed -e "s@##LINUX_IMAGE###@${LINUX_IMAGE}@g" -e "s@###LINUX_HEADERS###@${LINUX_HEADERS}@g" Dockerfile.in > Dockerfile
 
 if [ "$1" == "no-cache" ]; then
   docker build --no-cache -t local/debian10-ndpi .
